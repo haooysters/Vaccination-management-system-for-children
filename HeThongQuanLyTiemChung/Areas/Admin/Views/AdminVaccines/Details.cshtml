@@ -1,0 +1,118 @@
+﻿@model HeThongQuanLyTiemChung.Models.Vaccine
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminVaccines" asp-action="Index" class="breadcrumb-item">Danh sách vaccine</a>
+            <span class="breadcrumb-item active">Thông tin vaccine</span>
+        </nav>
+    </div>
+</div>
+
+
+
+<div class="card-body">
+    <h4 class="card-title">Thông tin vaccine</h4>
+    <div class="table-responsive">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model.VaccineId</td>
+                </tr>
+                <tr>
+                    <td>Tên vaccine:</td>
+                    <td>@Model.VaccineName</td>
+                </tr>
+                <tr>
+                    <td>Mô tả:</td>
+                    <td>@Model.Description</td>
+                </tr>
+                @*<tr>
+                    <td>Loại bệnh:</td>
+                    @if (Model.CatId != null)
+                    {
+                        <td class="d-flex align-items-center">
+
+                            <div>@Model.Cat.CatName</div>
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="d-flex align-items-center">
+
+                            <div>Không có</div>
+
+                        </td>
+                    }
+
+                </tr>*@
+                <tr>
+                    <td>Nước sản xuất:</td>
+                    @if (Model.BrandId != null)
+                    {
+                        <td class="d-flex align-items-center">
+
+                            <div>@Model.Brand.BrandName</div>
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="d-flex align-items-center">
+                            <div>Không có</div>
+
+
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>Nhóm tuổi:</td>
+                    @if (Model.AgeId != null)
+                    {
+                        <td class="d-flex align-items-center">
+
+                            <div>@Model.Age.AgeName</div>
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="d-flex align-items-center">
+                            <div>Không có</div>
+
+
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    @*<td>Gói vắc xin:</td>
+                    @if (Model.PackageId != null)
+                    {
+                        <td class="d-flex align-items-center">
+
+                            <div>@Model.Package.PackageName</div>
+
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="d-flex align-items-center">
+
+
+                            <div>Không có</div>
+                        </td>
+                    }*@
+                </tr>
+                <tr >
+                    <td>Hình ảnh:</td>
+                    <td><img style="width:100px; height:80px" src="~/images/vaccines/@Model.Thumb" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

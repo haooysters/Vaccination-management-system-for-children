@@ -1,0 +1,104 @@
+﻿
+@model HeThongQuanLyTiemChung.Models.Injection
+
+@{
+
+    var idBenh = ViewBag.IDBenh;
+    Disease muitiem = ViewBag.Benh;
+
+}
+<div class="modal-header">
+    <h5 class="modal-title">THÊM MŨI TIÊM</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">THÔNG TIN MŨI TIÊM #@muitiem.DiseaseId</h4>
+                <div class="table-responsive">
+                    <table class="product-info-table m-t-20">
+                        <tbody>
+                            <tr>
+                                <td>ID:</td>
+                                <td class="text-dark font-weight-semibold">#@muitiem.DiseaseId</td>
+                            </tr>
+                            <tr>
+                                <td>Tên bệnh:</td>
+                                <td>@muitiem.DiseaseName</td>
+                            </tr>                    
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <form asp-action="TaoMoi" asp-area="Admin" asp-controller="AdminInjections" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="col-sm-8 col-form-label">Tên mũi tiêm</label>
+
+                                    <input type="text" class="form-control" asp-for="InjectionName" placeholder="Tên mũi tiêm" required>
+
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="col-sm-8 col-form-label">Tên tháng tuổi</label>
+
+                                    <input type="text" class="form-control" asp-for="MonthAgeName" placeholder="Tên tháng tuổi" required>
+
+                                </div>
+                            </div>
+                            <div class="col-md-8" style="text-align:center">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success">Tạo mới</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@*<form asp-action="TaoMoi" asp-area="Admin" asp-controller="AdminInjections">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+
+            <div class="form-group col-md-6">
+                <label class="col-sm-6 col-form-label">Tên mũi tiêm</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" asp-for="InjectionName" placeholder="Tên mũi tiêm">
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label class="col-sm-6 col-form-label">Tháng tuổi</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" asp-for="MonthAgeName" placeholder="Tên tháng tuổi">
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <div class="col-sm-6" style="text-align:center">
+                    <button type="submit" class="btn btn-primary">Tạo mới</button>
+                </div>
+            </div>
+        </div>
+    </form>*@
+

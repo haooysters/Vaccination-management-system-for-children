@@ -1,0 +1,138 @@
+﻿@model HeThongQuanLyTiemChung.Models.Injection
+
+@{
+    Injection muitiem = ViewBag.IDMuiTiem;
+}
+
+<div class="modal-header">
+    <h5 class="modal-title">THÔNG TIN TIÊM CHỦNG</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">THÔNG TIN MŨI TIÊM #@muitiem.InjectionId</h4>
+                <div class="table-responsive">
+                    <table class="product-info-table m-t-20">
+                        <tbody>
+                            <tr>
+                                <td>ID:</td>
+                                <td class="text-dark font-weight-semibold">#@muitiem.InjectionId</td>
+                            </tr>
+                            <tr>
+                                <td>Tên bệnh:</td>
+                                <td>@muitiem.Disease.DiseaseName</td>
+                            </tr>
+                            <tr>
+                                <td>Tên mũi tiêm:</td>
+                                <td>@muitiem.InjectionName</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="tab-content m-t-15" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                1
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                2
+            </div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                3
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <form asp-area="Admin" asp-controller="Cart" asp-action="AddToCart" method="post" class="nav nav-tabs" id="myTab" role="tablist">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="col-sm-8 col-form-label">Chọn loại vaccine</label>
+                                    <select class="form-control" name="idvaccine" asp-items="@ViewBag.Vaccine" required>
+                                        <option value="0" disabled selected>Chọn vaccine</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="col-sm-6 col-form-label">Liều lượng</label>
+
+                                    <input type="text" class="form-control" name="lieuluong" placeholder="Nhập liều lượng" required>
+
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="col-sm-6 col-form-label">Số lô </label>
+
+                                    <input type="text" class="form-control" name="solo" placeholder="Nhập số lô" required>
+
+                                </div>
+                            </div>
+                            <div class="col-md-8" style="text-align:center">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success">Đăng ký</button>
+                                    <button  class="btn btn-success" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".ajax-add-to-cart").click(function () {
+                var IDvaccine = $("#idvaccine").val();
+                var LieuLuong = $("#lieuluong").val();
+                var SoLo = $("#solo").val();
+                $.ajax({
+                    url: "/Admin/Cart/AddToCart",
+                    data: {
+                        idvaccine: IDvaccine,
+                        lieuluong: LieuLuong,
+                        solo: SoLo,
+                        type: "ajax"
+                    },
+                    success: function (data) {
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Thêm giỏ hàng thành công!',
+                            showConfirmButton: false,
+                            timer: 2500
+                        });
+                        console.log(data.soLuong);
+                        $("#cart_count").html(data.soLuong);
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Thêm giỏ hàng thất bại',
+                            text: 'Vui lòng thử lại',
+                            showConfirmButton: false,
+                            timer: 2500
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

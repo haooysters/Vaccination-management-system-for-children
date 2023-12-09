@@ -1,0 +1,44 @@
+﻿@model HeThongQuanLyTiemChung.Models.Order
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminOrders" asp-action="Index" class="breadcrumb-item">Danh sách đơn hàng</a>
+            <span class="breadcrumb-item active">Cập nhật thanh toán</span>
+        </nav>
+    </div>
+</div>
+
+
+<form asp-action="Edit" asp-route-id="@Model.OrderId" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="OrderId" />
+    <input type="hidden" asp-for="CustomerId" />
+    <input type="hidden" asp-for="TotalMoney" />
+    <input type="hidden" asp-for="CreateDate" />
+    <input type="hidden" asp-for="Code" />
+    @if(Model.Paid == true){ 
+    }
+    <div class="form-group">
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <input type="checkbox" @Html.CheckBox("Paid")
+                <label>Thanh toán</label>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <div class="col-sm-6">
+                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+

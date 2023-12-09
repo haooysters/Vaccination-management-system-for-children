@@ -1,0 +1,59 @@
+﻿@model HeThongQuanLyTiemChung.Models.Customer
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminCustomers" asp-action="Index" class="breadcrumb-item">Danh sách khách hàng</a>
+            <span class="breadcrumb-item active">Xác nhận xóa khách hàng</span>
+        </nav>
+    </div>
+</div>
+
+<div class="card-body">
+    <h4 class="card-title">Xác nhận xóa khách hàng</h4>
+    <div class="table-responsive">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model.CustomerId</td>
+                </tr>
+                <tr>
+                    <td>Họ tên:</td>
+                    <td>@Model.FullName</td>
+                </tr>
+                <tr>
+                    <td>Số điện thoại:</td>
+                    <td>@Model.Phone</td>
+                </tr>
+                <tr>
+                    <td>Ngày sinh:</td>
+                    <td>@Model.Birthday</td>
+                </tr>
+                <tr>
+                    <td>Địa chỉ:</td>
+                    <td>@Model.Address</td>
+                </tr>             
+                <tr>
+                    <td>Email:</td>
+                    <td>@Model.Email</td>
+                </tr>
+                <tr>
+                    <td>Xác nhận xóa:</td>
+                    <td>
+                        <form asp-action="Delete" asp-route-id="@Model.CustomerId">
+                            <input type="hidden" asp-for="CustomerId" />
+                            <input type="submit" value="Xác nhận xóa" class="btn btn-danger" />
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

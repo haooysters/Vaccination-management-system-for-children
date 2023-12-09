@@ -1,0 +1,217 @@
+﻿@model IEnumerable<HeThongQuanLyTiemChung.ModelViews.PhacDo>
+@using HeThongQuanLyTiemChung.Helpper;
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    int PageNext = CurrentPage + 1;
+    ViewData["Title"] = "Index" + CurrentPage;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Customer khachhang = ViewBag.Customer;
+    List<AppointDate> muihen = ViewBag.AppountDate;
+    var dsphado = ViewBag.DSPhacDoTheoThang;
+}
+
+<div class="product-topbar">
+    <ul>
+        <li class="product-view-wrap">
+            <ul class="nav" role="tablist">
+                <li class="grid-view" role="presentation">
+                    <a  id="grid-view-tab" data-bs-toggle="tab" href="#grid-view" role="tab" aria-selected="true">
+                        <i class="fa fa-th"></i>
+                    </a>
+                </li>
+                <li class="list-view" role="presentation">
+                    <a class="active" id="list-view-tab" data-bs-toggle="tab" href="#list-view" role="tab" aria-selected="true">
+                        <i class="fa fa-th-list"></i>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="page-count">
+            <span>Phác đồ tiêm chủng</span>
+        </li>
+        <li class="short">
+            <a class="btn btn-danger btn-tone m-r-5" href="dang-xuat-khach-hang.html">X</a>
+
+        </li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="form-group col-md-6">
+        <div class="compare-area section-space-top">
+            <div class="container">
+                <div class="compare-table table-responsive">
+                    <h5 style="margin-top:5px">Thông tin cá nhân</h5>
+                    <table class="table table-bordered table-hover mb-0">
+                        <tbody>
+                            <tr>
+                                <th>Họ tên</th>
+                                <td>Xin chào, <b>@khachhang.FullName</b></td>
+
+                            </tr>
+                            <tr>
+                                <th>Ngày sinh</th>
+                                <td>@(khachhang.Birthday != null ? khachhang.Birthday.ToString("MM/dd/yyyy") : khachhang.Birthday)</td>
+
+                            </tr>
+                            <tr>
+                                <th>Số điện thoại</th>
+                                <td>@khachhang.Phone</td>
+
+                            </tr>
+                            <tr>
+                                <th>Địa chỉ</th>
+                                <td>@khachhang.Address</td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group col-md-6">
+        <div class="compare-area section-space-top">
+            <div class="container">
+                <div class="compare-table table-responsive">
+                    <h5 style="margin-top:5px">Mũi tiêm tiếp theo</h5>
+                    <table class="table table-bordered table-hover mb-0">
+
+                        <tbody>
+
+                            <tr>
+                                <th>Tuổi</th>
+                                @foreach (var item in muihen)
+                                {
+
+                                    <td>@Utilities.GetMonthOfAge(item.Injection.MonthAgeName)</td>
+                                }
+                            </tr>
+                            <tr>
+                                <th>Loại bệnh</th>
+                                @foreach (var item in muihen)
+                                {
+                                    <td>@item.Injection.Disease.DiseaseName</td>
+                                }
+                            </tr>
+                            <tr>
+                                <th>Ngày hẹn</th>
+                                @foreach (var item in muihen)
+                                {
+                                    <td>@item.AppointmentDate.Value.ToString("MM/dd/yyyy")</td>
+                                }
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tab-content text-charcoal pt-8">
+    <div class="tab-pane fade" id="grid-view" role="tabpanel" aria-labelledby="grid-view-tab">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col" width="110px">Tháng tuổi</th>
+                        <th scope="col">Tên bệnh</th>
+                        <th scope="col" width="90px">Mũi tiêm</th>
+                        <th scope="col">Tên vaccine</th>
+                        <th scope="col">Ngày tiêm</th>
+                        <th scope="col">Ngày hẹn</th>
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <th scope="row">@item.InjectionId</th>
+                            <td>@item.MonthAgeName</td>
+                            <td>@item.DiseaseName</td>
+                            <td>@item.InjectionName</td>
+                            <td>@item.VaccineName</td>
+                            <td>@item.CreateDate</td>
+
+                            <td style="color:peru">@(item.NgayHen != null ? item.NgayHen.Value.ToString("MM/dd/yyyy") : item.NgayHen)</td>
+
+
+                            <td>
+                                @*@if (item.CreateDate == null)
+                                    {
+                                        <a class="btn btn-success btn-tone m-r-5 xemdonhang" href="javascript:void(0)" data-mabenh="@item.DiseaseId" data-mamuitiem="@item.InjectionId">Thêm mũi tiêm</a>
+                                    }*@
+                                <!-- Button trigger modal -->
+
+                            </td>
+
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+    <div class="tab-pane fade show active" id="list-view" role="tabpanel" aria-labelledby="list-view-tab">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col" width="110px">Tháng tuổi</th>
+                        <th scope="col">Tên bệnh</th>
+                        <th scope="col" width="90px">Mũi tiêm</th>
+                        <th scope="col">Tên vaccine</th>
+                        <th scope="col">Ngày tiêm</th>
+                        <th scope="col">Ngày hẹn</th>
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (dsphado != null)
+                    {
+                        int i = 1;
+                        foreach (var item in dsphado)
+                        {
+
+                            <tr>
+
+
+                                <th scope="row">@i</th>
+                                <td>@item.MonthAgeName</td>
+                                <td>@item.DiseaseName</td>
+                                <td>@item.InjectionName</td>
+                                <td>@item.VaccineName</td>
+                                <td>@item.CreateDate</td>
+
+                                <td style="color:peru">@(item.NgayHen != null ? item.NgayHen.ToString("MM/dd/yyyy") : item.NgayHen)</td>
+
+
+                            </tr>
+                            i++;
+                        }
+                    }
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>

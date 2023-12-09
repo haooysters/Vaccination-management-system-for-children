@@ -1,0 +1,60 @@
+﻿@model HeThongQuanLyTiemChung.Models.Regimen
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminRegimen" asp-action="Index" class="breadcrumb-item">Danh sách phác đồ vaccine</a>
+            <span class="breadcrumb-item active">Tạo mới phác đồ vaccine</span>
+        </nav>
+    </div>
+</div>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+
+        <div class="form-group col-md-6">
+            <label asp-for="VaccineId" class="col-sm-6 col-form-label">Vắc xin</label>
+            <div class="col-sm-6">
+                <select asp-for="VaccineId" class="form-control" asp-items="ViewBag.Vacxin">
+                    <option value="" selected>Chọn vaccine</option>
+                </select>
+                <span asp-validation-for="VaccineId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label asp-for="InjectionId" class="col-sm-6 col-form-label">Mũi tiêm</label>
+            <div class="col-sm-6">
+                <select asp-for="InjectionId" class="form-control" asp-items="ViewBag.MuiTiem">
+                    <option value="" selected>Chọn mũi tiêm</option>
+                </select>
+                <span asp-validation-for="InjectionId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label asp-for="MonthAgeId" class="col-sm-6 col-form-label">Tháng tuổi</label>
+            <div class="col-sm-6">
+                <select asp-for="MonthAgeId" class="form-control" asp-items="ViewBag.ThangTuoi">
+                    <option value="" selected>Chọn tháng tuổi</option>
+                </select>
+                <span asp-validation-for="MonthAgeId" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <div class="form-group col-md-6">
+            <div class="col-sm-6" style="text-align:center">
+                <button type="submit" class="btn btn-primary">Tạo mới</button>
+            </div>
+        </div>
+    </div>
+</form>
+

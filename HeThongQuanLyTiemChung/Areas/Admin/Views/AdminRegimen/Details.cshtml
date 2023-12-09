@@ -1,0 +1,49 @@
+﻿@model HeThongQuanLyTiemChung.Models.Regimen
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminAges" asp-action="Index" class="breadcrumb-item">Danh sách phác đồ vaccine</a>
+            <span class="breadcrumb-item active">Thông tin phác đồ vaccine</span>
+        </nav>
+    </div>
+</div>
+
+<div class="card-body">
+    <h4 class="card-title">Thông tin phác đồ vaccine</h4>
+    <div class="table-responsive">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model.RegimenId</td>
+                </tr>
+                <tr>
+                    <td>Tên vaccine:</td>
+                    <td>@Model.Vaccine.VaccineName</td>
+                </tr>
+                <tr>
+                    <td>Tên loại bệnh:</td>
+                   @* <td>@Model.Vaccine.Cat.CatName</td>*@
+                </tr>
+                <tr>
+                    <td>Tên mũi tiêm:</td>
+                    <td>@Model.Injection.InjectionName</td>
+                </tr>
+                <tr>
+                    <td>Tháng tiêm:</td>
+                    <td>@Model.MonthAge.MonthAgeName</td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

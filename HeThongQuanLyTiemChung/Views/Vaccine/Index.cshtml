@@ -1,0 +1,300 @@
+﻿@model IEnumerable<HeThongQuanLyTiemChung.Models.Vaccine>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!-- Begin Main Content Area -->
+<main class="main-content">
+    @using (Html.BeginForm("KQSearch", "TimKiemVaccine", FormMethod.Get))
+    {
+
+        <div class="row" style="margin-top:20px; margin-left:300px">
+            <div class="row justify-content-center">
+
+                <div class="header-search-area d-none d-lg-block">
+                    <div class="input-group">
+                        <div>
+                            <input style="border:dotted" type="search" name="sKey" class="form-control bg-light border-0 small" placeholder="Nhập tên vắc xin" required />
+                        </div>
+
+                        <select style="width:150px" class="custom-select" id="txtCatID" name="txtCatID" asp-items="ViewBag.LoaiBenh">
+                            <option value="" selected>Chọn loại bệnh</option>
+                            <option value="0">Chọn tất cả</option>
+                        </select>
+                        @*<select class="custom-select" id="txtCatID" name="txtCatID" asp-items="ViewBag.NhomTuoi">
+                                <option selected>Chọn danh mục</option>
+                                <option value="0">Chọn tất cả</option>
+                            </select>*@
+                        <div class="input-group-append">
+                            <input class="btn btn-warning" type="submit" value="Tìm kiếm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+   
+    <div class="shop-area section-space-y-axis" style="margin-top:20px">
+        <div class="container">
+            <div class="row">
+                @*<div class="col-lg-3 order-lg-1 order-2 pt-10 pt-lg-0">
+                        <div class="sidebar-area">
+                            <div class="widgets-searchbox mb-9">
+                                <form id="widgets-searchbox" asp-action="KQSearch" asp-controller="TimKiemVaccine">
+                                    <input class="input-field" type="text" placeholder="Search">
+                                    <button class="widgets-searchbox-btn" type="submit">
+                                        <i class="pe-7s-search"></i>
+                                    </button>
+
+                                </form>
+                            </div>
+                            <div class="widgets-area mb-9">
+                                <h2 class="widgets-title mb-5">Refine By</h2>
+                                <div class="widgets-item">
+                                    <div class="form-group col-md-4">
+                                        <label class="col-sm-6 col-form-label">Loại bệnh</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" asp-items="ViewBag.LoaiBenh">
+                                                <option value="" selected>Chọn loại bệnh</option>
+                                            </select>
+                                            <span class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widgets-area widgets-filter mb-9">
+                                <h2 class="widgets-title mb-5">Price Filter</h2>
+                                <div class="price-filter">
+                                    <div id="slider-range"></div>
+                                    <div class="price-slider-amount">
+                                        <button class="btn btn-primary btn-secondary-hover">Filter</button>
+                                        <div class="label-input position-relative">
+                                            <label>price : </label>
+                                            <input type="text" id="amount" name="price" placeholder="Add Your Price" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widgets-area mb-9">
+                                <h2 class="widgets-title mb-5">Color</h2>
+                                <div class="widgets-item">
+                                    <ul class="widgets-checkbox">
+                                        <li>
+                                            <input class="input-checkbox" type="checkbox" id="color-selection-1">
+                                            <label class="label-checkbox mb-0" for="color-selection-1">
+                                                Green
+                                                <span>7</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input class="input-checkbox" type="checkbox" id="color-selection-2" checked>
+                                            <label class="label-checkbox mb-0" for="color-selection-2">
+                                                Cream
+                                                <span>3</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input class="input-checkbox" type="checkbox" id="color-selection-3">
+                                            <label class="label-checkbox mb-0" for="color-selection-3">
+                                                Blue
+                                                <span>4</span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input class="input-checkbox" type="checkbox" id="color-selection-4">
+                                            <label class="label-checkbox mb-0" for="color-selection-4">
+                                                Black
+                                                <span>6</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="widgets-area mb-9">
+                                <h2 class="widgets-title mb-5">Size</h2>
+                                <div class="widgets-item">
+                                    <ul class="widgets-checkbox">
+                                        <li>
+                                            <input class="input-checkbox" type="checkbox" id="size-selection-1">
+                                            <label class="label-checkbox mb-0" for="size-selection-1">XL</label>
+                                        </li>
+                                        <li>
+                                            <input class="input-checkbox" type="checkbox" id="size-selection-2" checked>
+                                            <label class="label-checkbox mb-0" for="size-selection-2">L</label>
+                                        </li>
+                                        <li>
+                                            <input class="input-checkbox" type="checkbox" id="size-selection-3">
+                                            <label class="label-checkbox mb-0" for="size-selection-3">SM</label>
+                                        </li>
+                                        <li>
+                                            <input class="input-checkbox" type="checkbox" id="size-selection-4">
+                                            <label class="label-checkbox mb-0" for="size-selection-4">XXL</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>*@
+                <div class="col-lg-12 order-lg-2 order-1">
+                    <div class="product-topbar">
+                        <ul>
+                            <li class="product-view-wrap">
+
+                            </li>
+                            <li class="page-count">
+                                <span>Sản phẩm vắc xin</span>
+                            </li>
+                            <li class="short">
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product-grid-view row">
+                        @if (Model != null && Model.Count() > 0)
+                        {
+                            foreach (var item in Model)
+                            {
+                                string url = $"/{item.VaccineName}-{item.VaccineId}.html";
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="product-item">
+                                        <div class="product-img img-zoom-effect">
+                                            <a href="@url">
+                                                <img @url src="images/vaccines/@item.Thumb" alt="Product Images">
+                                            </a>
+                                            <div class="product-add-action">
+                                                <ul>
+                                                    <li>
+                                                        <a href="cart.html">
+                                                            <i class="pe-7s-cart"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="compare.html">
+                                                            <i class="pe-7s-shuffle"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="wishlist.html">
+                                                            <i class="pe-7s-like"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <a class="product-name" style="height:55px" href="@url">@item.VaccineName</a>
+                                            <div class="price-box pb-1">
+                                                <span class="new-price">@item.Price.Value.ToString("#,##0") VNĐ</span>
+                                            </div>
+                                            <div class="rating-box">
+                                                <ul>
+                                                    <li><i class="pe-7s-star"></i></li>
+                                                    <li><i class="pe-7s-star"></i></li>
+                                                    <li><i class="pe-7s-star"></i></li>
+                                                    <li><i class="pe-7s-star"></i></li>
+                                                    <li><i class="pe-7s-star"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                    <div class="tab-content text-charcoal pt-8">
+                        <div class="tab-pane fade" id="grid-view" role="tabpanel" aria-labelledby="grid-view-tab">
+
+                        </div>
+                        <div class="tab-pane fade show active" id="list-view" role="tabpanel" aria-labelledby="list-view-tab">
+                            @*<div class="product-list-view with-sidebar row">
+                                    @if (Model != null && Model.Count() > 0)
+                                    {
+                                        foreach (var item in Model)
+                                        {
+                                            string url = $"/{item.VaccineName}-{item.VaccineId}.html";
+                                            <div class="col-12">
+                                                <div class="product-item">
+                                                    <div class="product-img img-zoom-effect">
+                                                        <a href="@url">
+                                                            <img @url src="images/vaccines/@item.Thumb" alt="Product Images">
+                                                        </a>
+                                                        <div class="product-add-action">
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="cart.html">
+                                                                        <i class="pe-7s-cart"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="compare.html">
+                                                                        <i class="pe-7s-shuffle"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="wishlist.html">
+                                                                        <i class="pe-7s-like"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content align-self-center">
+                                                        <a class="product-name pb-2" href="@url">@item.VaccineName</a>
+                                                        <div class="price-box pb-1">
+                                                            <span class="new-price">@item.Price.Value.ToString("#,##0") VNĐ</span>
+                                                        </div>
+                                                        <div class="rating-box pb-2">
+                                                            <ul>
+                                                                <li><i class="pe-7s-star"></i></li>
+                                                                <li><i class="pe-7s-star"></i></li>
+                                                                <li><i class="pe-7s-star"></i></li>
+                                                                <li><i class="pe-7s-star"></i></li>
+                                                                <li><i class="pe-7s-star"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                        <p class="short-desc mb-0">
+                                                            Chương trình Tiêm chủng Mở rộng Quốc gia (EPI), với sự hỗ trợ của UNICEF, đã thanh toán thành công các vắc xin phòng bệnh bại liệt, uốn ván trẻ sơ sinh và phòng bệnh sởi. Trong 25 năm qua, vắc-xin đã bảo vệ được 6.7 triệu trẻ em Việt Nam và ngăn chặn 42.000 ca tử vong do các bệnh chết người ở trẻ em.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+
+
+
+                                </div>*@
+                        </div>
+                    </div>
+                    <div class="pagination-area pt-10">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span class="fa fa-chevron-left"></span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span class="fa fa-chevron-right"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Main Content Area End Here -->

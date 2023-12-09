@@ -1,0 +1,204 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
+    <PackageReference Include="MailKit" Version="4.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="MimeKit" Version="4.3.0" />
+    <PackageReference Include="PagedList.Core.Mvc" Version="3.0.0" />
+    <PackageReference Include="Quartz" Version="3.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Content\assets\dist\css\alt\" />
+    <Folder Include="Content\assets\plugins\font-awesome-4.7.0\less\" />
+    <Folder Include="Content\ckeditor\plugins\a11yhelp\dialogs\" />
+    <Folder Include="Content\ckeditor\plugins\about\dialogs\hidpi\" />
+    <Folder Include="Content\ckeditor\plugins\clipboard\dialogs\" />
+    <Folder Include="Content\ckeditor\plugins\colordialog\dialogs\" />
+    <Folder Include="Content\ckeditor\plugins\div\dialogs\" />
+    <Folder Include="Content\ckeditor\plugins\fakeobjects\images\" />
+    <Folder Include="Content\ckeditor\plugins\find\dialogs\" />
+    <Folder Include="Content\ckeditor\plugins\flash\" />
+    <Folder Include="Content\ckeditor\plugins\forms\dialogs\" />
+    <Folder Include="Content\ckeditor\plugins\forms\images\" />
+    <Folder Include="Content\ckeditor\plugins\iframe\dialogs\" />
+    <Folder Include="Content\ckeditor\plugins\iframe\images\" />
+    <Folder Include="Content\ckeditor\plugins\image\dialogs\" />
+    <Folder Include="Content\ckeditor\plugins\image\images\" />
+    <Folder Include="Content\ckeditor\plugins\link\images\" />
+    <Folder Include="Content\ckeditor\plugins\liststyle\dialogs\" />
+    <Folder Include="Content\ckeditor\plugins\magicline\" />
+    <Folder Include="Content\ckeditor\plugins\pagebreak\images\" />
+    <Folder Include="Content\ckeditor\plugins\pastefromword\filter\" />
+    <Folder Include="Content\ckeditor\plugins\scayt\" />
+    <Folder Include="Content\ckeditor\plugins\showblocks\images\" />
+    <Folder Include="Content\ckeditor\plugins\smiley\" />
+    <Folder Include="Content\ckeditor\plugins\specialchar\dialogs\lang\" />
+    <Folder Include="Content\ckeditor\plugins\templates\" />
+    <Folder Include="Content\ckeditor\plugins\wsc\dialogs\" />
+    <Folder Include="Content\ckeditor\samples\assets\inlineall\" />
+    <Folder Include="Content\ckeditor\samples\assets\uilanguages\" />
+    <Folder Include="Content\ckeditor\samples\plugins\dialog\" />
+    <Folder Include="Content\ckeditor\samples\plugins\htmlwriter\" />
+    <Folder Include="Content\ckeditor\samples\plugins\magicline\" />
+    <Folder Include="Content\ckeditor\samples\plugins\wysiwygarea\" />
+    <Folder Include="Content\ckfinder\help\en\files\" />
+    <Folder Include="Content\ckfinder\help\es-mx\files\" />
+    <Folder Include="Content\ckfinder\help\es\files\images\" />
+    <Folder Include="Content\ckfinder\help\files\images\" />
+    <Folder Include="Content\ckfinder\help\files\other\" />
+    <Folder Include="Content\ckfinder\help\fi\files\images\" />
+    <Folder Include="Content\ckfinder\plugins\dummy\lang\" />
+    <Folder Include="Content\ckfinder\plugins\fileeditor\bin\" />
+    <Folder Include="Content\ckfinder\plugins\fileeditor\codemirror\lib\" />
+    <Folder Include="Content\ckfinder\plugins\fileeditor\codemirror\mode\" />
+    <Folder Include="Content\ckfinder\plugins\flashupload\flash\" />
+    <Folder Include="Content\ckfinder\plugins\gallery\colorbox\" />
+    <Folder Include="Content\ckfinder\plugins\imageresize\bin\" />
+    <Folder Include="Content\ckfinder\plugins\imageresize\images\" />
+    <Folder Include="Content\ckfinder\plugins\watermark\bin\Debug\" />
+    <Folder Include="Content\ckfinder\plugins\watermark\bin\Release\" />
+    <Folder Include="Content\ckfinder\skins\kama\images\" />
+    <Folder Include="Content\ckfinder\skins\v1\images\icons\" />
+    <Folder Include="Content\ckfinder\skins\v1\images\loaders\" />
+    <Folder Include="Content\ckfinder\skins\v1\images\toolbar\" />
+    <Folder Include="Content\clients\dist\js\pages\" />
+    <Folder Include="Content\clients\plugins\bootstrap-colorpicker\js\" />
+    <Folder Include="Content\clients\plugins\bootstrap-slider\css\" />
+    <Folder Include="Content\clients\plugins\bootstrap-switch\css\" />
+    <Folder Include="Content\clients\plugins\bootstrap-switch\js\" />
+    <Folder Include="Content\clients\plugins\codemirror\addon\comment\" />
+    <Folder Include="Content\clients\plugins\codemirror\addon\dialog\" />
+    <Folder Include="Content\clients\plugins\codemirror\addon\display\" />
+    <Folder Include="Content\clients\plugins\codemirror\addon\edit\" />
+    <Folder Include="Content\clients\plugins\codemirror\addon\hint\" />
+    <Folder Include="Content\clients\plugins\codemirror\addon\lint\" />
+    <Folder Include="Content\clients\plugins\codemirror\addon\merge\" />
+    <Folder Include="Content\clients\plugins\codemirror\addon\mode\" />
+    <Folder Include="Content\clients\plugins\codemirror\addon\runmode\" />
+    <Folder Include="Content\clients\plugins\codemirror\addon\scroll\" />
+    <Folder Include="Content\clients\plugins\codemirror\addon\search\" />
+    <Folder Include="Content\clients\plugins\codemirror\addon\selection\" />
+    <Folder Include="Content\clients\plugins\codemirror\addon\tern\" />
+    <Folder Include="Content\clients\plugins\codemirror\addon\wrap\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\asciiarmor\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\asterisk\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\brainfuck\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\cmake\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\cobol\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\commonlisp\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\crystal\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\css\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\cypher\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\django\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\dtd\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\dylan\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\d\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\ebnf\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\eiffel\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\erlang\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\factor\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\fcl\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\gas\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\gfm\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\gherkin\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\go\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\haml\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\handlebars\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\haskell-literate\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\haskell\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\htmlembedded\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\htmlmixed\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\http\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\javascript\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\jinja2\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\julia\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\mathematica\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\mbox\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\mirc\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\mllike\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\mumps\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\nginx\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\octave\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\oz\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\pascal\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\pegjs\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\perl\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\php\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\powershell\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\protobuf\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\puppet\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\python\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\q\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\rpm\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\rust\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\sass\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\sas\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\scheme\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\sieve\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\smalltalk\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\smarty\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\solr\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\sparql\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\spreadsheet\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\sql\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\stex\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\textile\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\tiddlywiki\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\tiki\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\troff\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\ttcn\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\vhdl\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\wast\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\xquery\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\yacas\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\yaml-frontmatter\" />
+    <Folder Include="Content\clients\plugins\codemirror\mode\z80\" />
+    <Folder Include="Content\clients\plugins\datatables-bs4\css\" />
+    <Folder Include="Content\clients\plugins\datatables-buttons\css\" />
+    <Folder Include="Content\clients\plugins\datatables-buttons\js\" />
+    <Folder Include="Content\clients\plugins\datatables-colreorder\css\" />
+    <Folder Include="Content\clients\plugins\datatables-fixedcolumns\js\" />
+    <Folder Include="Content\clients\plugins\datatables-fixedheader\css\" />
+    <Folder Include="Content\clients\plugins\datatables-fixedheader\js\" />
+    <Folder Include="Content\clients\plugins\datatables-keytable\css\" />
+    <Folder Include="Content\clients\plugins\datatables-keytable\js\" />
+    <Folder Include="Content\clients\plugins\datatables-scroller\css\" />
+    <Folder Include="Content\clients\plugins\datatables-searchbuilder\css\" />
+    <Folder Include="Content\clients\plugins\datatables-searchbuilder\js\" />
+    <Folder Include="Content\clients\plugins\datatables-searchpanes\css\" />
+    <Folder Include="Content\clients\plugins\datatables-searchpanes\js\" />
+    <Folder Include="Content\clients\plugins\datatables-select\js\" />
+    <Folder Include="Content\clients\plugins\dropzone\min\" />
+    <Folder Include="Content\clients\plugins\flag-icon-css\flags\1x1\" />
+    <Folder Include="Content\clients\plugins\flag-icon-css\flags\4x3\" />
+    <Folder Include="Content\clients\plugins\flot\plugins\" />
+    <Folder Include="Content\clients\plugins\ion-rangeslider\css\" />
+    <Folder Include="Content\clients\plugins\jquery-ui\images\" />
+    <Folder Include="Content\clients\plugins\jqvmap\maps\" />
+    <Folder Include="Content\clients\plugins\overlayScrollbars\css\" />
+    <Folder Include="Content\clients\plugins\pace-progress\themes\green\" />
+    <Folder Include="Content\clients\plugins\pace-progress\themes\purple\" />
+    <Folder Include="Content\clients\plugins\pace-progress\themes\silver\" />
+    <Folder Include="Content\clients\plugins\pace-progress\themes\white\" />
+    <Folder Include="Content\clients\plugins\popper\umd\" />
+    <Folder Include="Content\clients\plugins\summernote\plugin\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<HeThongQuanLyTiemChung.Models.OrderDetail>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <span class="breadcrumb-item active">Thống kê</span>
+        </nav>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6 col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="media align-items-center">
+                    <div class="avatar avatar-icon avatar-lg avatar-blue">
+                        <i class="anticon anticon-dollar"></i>
+                    </div>
+                    <div class="m-l-15">
+                        <h2 class="m-b-0">@ViewBag.TongDoanhThu.ToString("#,##0") VNĐ</h2>
+                        <p class="m-b-0 text-muted">Tổng doanh thu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="media align-items-center">
+                    <div class="avatar avatar-icon avatar-lg avatar-gold">
+                        <i class="anticon anticon-profile"></i>
+                    </div>
+                    <div class="m-l-15">
+                        <h2 class="m-b-0">@ViewBag.TongDonDangKy</h2>
+                        <p class="m-b-0 text-muted">Tổng số hóa đơn</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="media align-items-center">
+                    <div class="avatar avatar-icon avatar-lg avatar-purple">
+                        <i class="anticon anticon-user"></i>
+                    </div>
+                    <div class="m-l-15">
+                        <h2 class="m-b-0">@ViewBag.TongHocVien</h2>
+                        <p class="m-b-0 text-muted">Tổng số khách hàng</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,43 @@
+﻿@model HeThongQuanLyTiemChung.Models.Disease
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminDiseases" asp-action="Index" class="breadcrumb-item">Danh sách loại bệnh</a>
+            <span class="breadcrumb-item active">Chỉnh sửa loại bệnh</span>
+        </nav>
+    </div>
+</div>
+
+
+<form asp-action="Edit" asp-route-id="@Model.DiseaseId" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="DiseaseId" />
+    <div class="form-group">
+        <div class="form-group col-md-6">
+            <label class="col-sm-4 col-form-label">Tên loại bệnh</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="DiseaseName" placeholder="Tên loại bệnh">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-sm-2 col-form-label">Mô tả</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="Description" placeholder="Mô tả">
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <div class="col-sm-6">
+                <button class="btn btn-primary">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+</form>
+

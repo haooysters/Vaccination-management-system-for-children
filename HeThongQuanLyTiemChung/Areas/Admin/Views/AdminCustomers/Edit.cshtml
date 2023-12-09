@@ -1,0 +1,91 @@
+﻿@model HeThongQuanLyTiemChung.Models.Customer
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminCustomers" asp-action="Index" class="breadcrumb-item">Danh sách khách hàng</a>
+            <span class="breadcrumb-item active">Chỉnh sửa khách hàng</span>
+        </nav>
+    </div>
+</div>
+
+
+<form asp-action="Edit" asp-route-id="@Model.CustomerId" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="CustomerId" />
+    <input type="hidden" asp-for="GenderId" />
+    <input type="hidden" asp-for="CreateDate" />
+    <input type="hidden" asp-for="Birthday" />
+    <input type="hidden" asp-for="Password" />
+    <input type="hidden" asp-for="Salt" />
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="col-sm-6 col-form-label">Họ tên</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" asp-for="FullName" placeholder="Nhập họ tên">
+            </div>
+            <span asp-validation-for="FullName" class="col-sm-6 text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-sm-6 col-form-label">Số điện thoại</label>
+            <div class="col-sm-8">
+                <input type="tel" class="form-control" asp-for="Phone" placeholder="Nhập số điện thoại">
+            </div>
+            <div class="col-sm-6">
+                @if (ViewBag.error != null)
+                {
+                    <span class="badge badge-danger">@ViewBag.error</span>
+                }
+            </div>
+            <span asp-validation-for="Phone" class="col-sm-6 text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="col-sm-6 col-form-label">Ngày sinh</label>
+            <div class="col-sm-8">
+                <input asp-for="Birthday" class="form-control" />
+            </div>
+            <span asp-validation-for="Birthday" class="col-sm-6 text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-sm-6 col-form-label">Giới tính</label>
+            <div class="col-sm-8">
+                <select asp-for="GenderId" class="form-control" asp-items="ViewBag.GioiTinh">
+                    <option value="" selected>Chọn giới tính</option>
+                </select>
+            </div>
+            <span asp-validation-for="GenderId" class="col-sm-6 text-danger"></span>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-6 col-form-label">Địa chỉ</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" asp-for="Address" placeholder="Nhập địa chỉ">
+        </div>
+        <span asp-validation-for="Address" class="col-sm-6 text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label class="col-sm-6 col-form-label">Email</label>
+        <div class="col-sm-6">
+            <input type="email" class="form-control" asp-for="Email" placeholder="Nhập Email">
+        </div>
+
+    </div>
+    <div class="form-group col-md-8">
+        <div class="col-sm-6">
+            <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+        </div>
+    </div>
+
+</form>
+
+

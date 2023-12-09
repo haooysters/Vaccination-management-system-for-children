@@ -1,0 +1,43 @@
+﻿@model HeThongQuanLyTiemChung.Models.Page
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminPages" asp-action="Index" class="breadcrumb-item">Danh sách tin tức</a>
+            <span class="breadcrumb-item active">Thông tin tin tức</span>
+        </nav>
+    </div>
+</div>
+
+<div class="card-body">
+    <h4 class="card-title">Thông tin tin tức</h4>
+    <div class="table-responsive">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model.PageId</td>
+                </tr>
+                <tr>
+                    <td>Tên tin tức:</td>
+                    <td>@Model.Title</td>
+                </tr>
+                <tr>
+                    <td>Tên tác giả:</td>
+                    <td>@Model.AuthorName</td>
+                </tr>
+             
+                <tr>
+                    <td>Ngày tạo:</td>
+                    <td>@Model.CreateDate</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

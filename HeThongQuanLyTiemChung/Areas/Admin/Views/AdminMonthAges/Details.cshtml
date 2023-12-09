@@ -1,0 +1,37 @@
+﻿@model HeThongQuanLyTiemChung.Models.MonthAge
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminMonthAges" asp-action="Index" class="breadcrumb-item">Danh sách tháng tuổi</a>
+            <span class="breadcrumb-item active">Thông tin tháng tuổi</span>
+        </nav>
+    </div>
+</div>
+
+<div class="card-body">
+    <h4 class="card-title">Thông tin tháng tuổi</h4>
+    <div class="table-responsive">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model.MonthAgeId</td>
+                </tr>
+                <tr>
+                    <td>Tên tháng tuổi:</td>
+                    <td>@Model.MonthAgeName</td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

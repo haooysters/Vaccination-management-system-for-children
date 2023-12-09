@@ -1,0 +1,259 @@
+﻿@model IEnumerable<HeThongQuanLyTiemChung.Models.Regimen>
+
+@{
+    ViewData["Title"] = "TimKiem";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    Customer customer = ViewBag.KhachHang;
+
+    List<Order> DanhSachDonHang = ViewBag.DonHang;
+
+    var month = ViewBag.ThangTuoi;
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <span class="breadcrumb-item active">Thông tin tiêm chủng</span>
+        </nav>
+    </div>
+</div>
+
+@{string key = ""; }
+
+<div class="col-md-8">
+    @using (Html.BeginForm("TimKiem", "Search", FormMethod.Get))
+    {
+        <div class="input-group">
+            <input type="search" name="sKey" value="@(key != null ? ViewBag.tukhoa : "")" class="form-control bg-light border-0 small" placeholder="Tìm kiếm khóa học" />
+
+            <select class="custom-select" name="txtCatID" asp-items="ViewBag.DanhMuc">
+                <option selected>Chọn loại bệnh</option>
+                <option value="0">Chọn tất cả</option>
+            </select>
+            <div class="input-group-append">
+                <input class="btn btn-primary" type="submit" value="Tìm kiếm">
+            </div>
+        </div>
+
+        key = key + ViewBag.tukhoa;
+    }
+</div>
+
+
+
+
+<br />
+
+
+
+<ul class="nav nav-tabs nav-justified" id="myTabJustified" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="home-tab-justified" data-toggle="tab" href="#home-justified" role="tab" aria-controls="home-justified" aria-selected="true">Thông tin cá nhân</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="profile-tab-justified" data-toggle="tab" href="#profile-justified" role="tab" aria-controls="profile-justified" aria-selected="false">Phác đồ tiêm chủng</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="contact-tab-justified" data-toggle="tab" href="#contact-justified" role="tab" aria-controls="contact-justified" aria-selected="false">Lịch sử tiêm chủng</a>
+    </li>
+</ul>
+<div class="tab-content m-t-15" id="myTabContentJustified">
+    <div class="tab-pane fade show active" id="home-justified" role="tabpanel" aria-labelledby="home-tab-justified">
+        <div class="card-body">
+            <h4 class="card-title">Thông tin khách hàng</h4>
+            <div class="table-responsive">
+                <table class="product-info-table m-t-20">
+                    <tbody>
+                        <tr>
+                            <td>ID:</td>
+                            <td class="text-dark font-weight-semibold">@customer.CustomerId</td>
+                        </tr>
+                        <tr>
+                            <td>Họ tên:</td>
+                            <td>@customer.FullName</td>
+                        </tr>
+                        <tr>
+                            <td>Số điện thoại:</td>
+                            <td>@customer.Phone</td>
+                        </tr>
+                        <tr>
+                            <td>Ngày sinh:</td>
+                            <td>@customer.Birthday</td>
+                        </tr>
+                        <tr>
+                            <td>Tuổi:</td>
+                            <td>@month</td>
+                        </tr>
+                        <tr>
+                            <td>Giới tính:</td>
+                            <td>@customer.Gender.GenderName</td>
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ:</td>
+                            <td>@customer.Address</td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td>@customer.Email</td>
+                        </tr>
+                        <tr>
+                            <td>Ngày tạo:</td>
+                            <td>@customer.CreateDate</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="profile-justified" role="tabpanel" aria-labelledby="profile-tab-justified">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Tên vaccine</th>
+                        <th scope="col">Mũi tiêm</th>
+                        <th scope="col">Tháng tuổi</th>
+                        <th scope="col">#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.RegimenId</th>
+                                <td>@item.Vaccine.VaccineName</td>
+                                <td>@item.Injection.InjectionName</td>
+                                <td>@item.MonthAge.MonthAgeName</td>
+                                <td>
+                                    <a class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.RegimenId">Đăng ký</a>
+                                    <!-- Button trigger modal -->
+
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <p>Chưa có thông tin!</p>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="contact-justified" role="tabpanel" aria-labelledby="contact-tab-justified">
+        <div class="myaccount-orders">
+            <h4 class="small-title">LỊCH SỬ TIÊM CHỦNG</h4>
+            @if (DanhSachDonHang != null && DanhSachDonHang.Count() > 0)
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <tbody>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ngày tiêm</th>
+                                <th>#</th>
+
+                            </tr>
+                            @foreach (var item in DanhSachDonHang)
+                            {
+                                <tr>
+                                    <td><a class="account-order-id" href="javascript:void(0)">#@item.OrderId</a></td>
+                                    <td>@item.CreateDate</td>
+
+                                    <td>
+                                        <a class="xemdonhang" href="javascript:void(0)" data-madonhang="@item.OrderId">Xem chi tiết</a>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+
+                    <hr />
+                    <div id="records_table">
+
+                    </div>
+                </div>
+            }
+            else
+            {
+                <p>Chưa có lịch sử tiêm!</p>
+            }
+        </div>
+    </div>
+</div>
+
+<div id="modal-header" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $(".xemdonhang").click(function () {
+                var madonhang = $(this).attr("data-madonhang")
+                $.ajax({
+                    url: '/DonHang/Details',
+                    datatype: "json",
+                    type: "POST",
+                    data: { id: madonhang },
+                    async: true,
+                    success: function (results) {
+                        $("#records_table").html("");
+                        $("#records_table").html(results);
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $('#modal-header').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var url = button.attr("href");
+            var modal = $(this);
+            // note that this will replace the content of modal-content ever time the modal is opened
+            modal.find('.modal-content').load(url);
+        });
+    </script>
+
+}
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <i class="anticon anticon-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

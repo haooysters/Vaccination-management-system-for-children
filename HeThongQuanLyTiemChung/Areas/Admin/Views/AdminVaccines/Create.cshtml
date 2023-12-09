@@ -1,0 +1,143 @@
+﻿@model HeThongQuanLyTiemChung.Models.Vaccine
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles{
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminVaccines" asp-action="Index" class="breadcrumb-item">Danh sách vaccine</a>
+            <span class="breadcrumb-item active">Tạo mới vaccine</span>
+        </nav>
+    </div>
+</div>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="form-group col-md-8">
+            <label class="col-sm-6 col-form-label">Vaccine</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" asp-for="VaccineName" placeholder="Tên vaccine">
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="col-sm-6 col-form-label">Giá bán</label>
+            <div class="col-sm-8">
+                <input type="number" class="form-control" asp-for="Price" placeholder="Giá bán">
+            </div>
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+        <label class="col-sm-6 col-form-label">Mô tả ngắn</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" asp-for="Title" placeholder="Mô tả ngắn">
+        </div>
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label asp-for="AgeId" class="col-sm-6 col-form-label">Nhóm tuổi</label>
+            <div class="col-sm-10">
+                <select asp-for="AgeId" class="form-control" asp-items="ViewBag.NhomTuoi">
+                    <option value="" selected>Chọn nhóm tuổi</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="BrandId" class="col-sm-6 col-form-label">Thương hiệu</label>
+            <div class="col-sm-12">
+                <select asp-for="BrandId" class="form-control" asp-items="ViewBag.ThuongHieu">
+                    <option value="" selected>Chọn thương hiệu</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label asp-for="DiseaseId" class="col-sm-6 col-form-label">Loại bệnh</label>
+            <div class="col-sm-10">
+                <select asp-for="DiseaseId" class="form-control" asp-items="ViewBag.LoaiBenh">
+                    <option value="" selected>Chọn loại bệnh</option>
+                </select>
+                <span asp-validation-for="DiseaseId" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="form-group col-md-6">
+            <label asp-for="InjectionId" class="col-sm-6 col-form-label">Mũi tiêm</label>
+            <div class="col-sm-6">
+                <select asp-for="InjectionId" class="form-control" asp-items="ViewBag.MuiTiem">
+                    <option value="" selected>Chọn mũi tiêm</option>
+                </select>
+                <span asp-validation-for="InjectionId" class="text-danger"></span>
+            </div>
+        </div>*@
+
+    @*<div class="form-group col-md-6">
+        <label asp-for="PackageId" class="col-sm-6 col-form-label">Gói vắc xin</label>
+        <div class="col-sm-6">
+            <select asp-for="PackageId" class="form-control" asp-items="ViewBag.GoiVaccine">
+                <option value="" selected>Chọn gói vắc xin</option>
+            </select>
+            <span asp-validation-for="PackageId" class="text-danger"></span>
+        </div>
+    </div>*@
+
+    <div class="form-group col-md-6">
+        <label asp-for="Thumb" class="col-sm-6 col-form-label">Ảnh đại diện</label>
+        <div class="col-sm-8">
+            <div>
+                <input asp-for="Thumb" name="fThumb" type="file" class="form-control-file" />
+            </div>
+            <span asp-validation-for="Thumb" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group col-md-12">
+        <label class="col-sm-12 col-form-label">Mô tả chi tiết</label>
+        <div id="editor">
+            <div class="col-sm-12">
+                <textarea class="summernote" asp-for="Description"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <div class="col-sm-6" style="text-align:center">
+            <button type="submit" class="btn btn-primary">Tạo mới</button>
+        </div>
+    </div>
+
+
+
+</form>
+
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+
+        jQuery(document).ready(function () {
+            $('.summernote').summernote({
+                fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+                height: 200,
+                minHeight: null,
+                maxHeight: null,
+                focus: true
+            });
+        });
+    </script>
+}

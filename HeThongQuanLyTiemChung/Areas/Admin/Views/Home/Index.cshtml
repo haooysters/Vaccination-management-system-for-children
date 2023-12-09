@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{string key = ""; }
+
+<br />
+<br />
+<br />
+<div style="padding-left:200px; text-align:center" class="col-md-8">
+    <h3>Nhập thông tin tra cứu</h3>
+    @using (Html.BeginForm("TimKiem", "Search", FormMethod.Get))
+    {
+        <div class="input-group">
+            <div class="col-sm-7">
+                <input type="search" name="sKey" value="@(key != null ? key : "")" class="form-control bg-light border-0 small" placeholder="Nhập số điện thoại" required/>
+            </div>
+            @*<select class="custom-select" id="txtPack" name="txtPack" asp-items="ViewBag.GoiVaccine">
+                    <option selected>Chọn gói vắc xin</option>
+                    <option value="0">Chọn tất cả</option>
+                </select>
+                <select class="custom-select" id="txtCatID" name="txtCatID" asp-items="ViewBag.DanhMuc">
+                    <option selected>Chọn danh mục</option>
+                    <option value="0">Chọn tất cả</option>
+                </select>*@
+            @*<select class="custom-select" id="txtCatID" name="txtCatID" asp-items="ViewBag.NhomTuoi">
+                    <option selected>Chọn danh mục</option>
+                    <option value="0">Chọn tất cả</option>
+                </select>*@
+            <div class="input-group-append">
+                <input class="btn btn-primary" type="submit" value="Tìm kiếm">
+            </div>
+        </div>
+
+        key = key + ViewBag.tukhoa;
+    }
+
+
+</div>
+
+
+

@@ -1,0 +1,39 @@
+﻿@model HeThongQuanLyTiemChung.Models.Category
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminCategories" asp-action="Index" class="breadcrumb-item">Danh sách nhóm bệnh</a>
+            <span class="breadcrumb-item active">Thông tin nhóm bệnh</span>
+        </nav>
+    </div>
+</div>
+
+<div class="card-body">
+    <h4 class="card-title">Thông tin loại vaccine</h4>
+    <div class="table-responsive">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model.CatId</td>
+                </tr>
+                <tr>
+                    <td>Tên nhóm bệnh:</td>
+                    <td>@Model.CatName</td>
+                </tr>
+                <tr>
+                    <td>Mô tả:</td>
+                    <td>@Model.Description</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,231 @@
+﻿@using PagedList.Core.Mvc
+@using HeThongQuanLyTiemChung.Helpper;
+@model PagedList.Core.IPagedList<HeThongQuanLyTiemChung.ModelViews.PhacDo>
+
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    int PageNext = CurrentPage + 1;
+    ViewData["Title"] = "TimKiem" + CurrentPage;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+    Customer khachhang = ViewBag.KhachHang;
+
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <span class="breadcrumb-item active">Danh sách loại bệnh</span>
+        </nav>
+    </div>
+</div>
+
+<div class="card-body">
+    <div class="row align-items-center">
+        <div class="col-md-10">
+            <div class="row">
+                <div class="d-md-block d-none border-left col-1"></div>
+                <div class="col">
+                    <ul class="list-unstyled m-t-10">
+                        <li class="row">
+                            <p class="col-sm-3 col-4 font-weight-semibold text-dark m-b-5">
+                                <i class="m-r-10 text-primary far fa-user"></i>
+                                <span>Họ tên: </span>
+                            </p>
+                            <p class="col font-weight-semibold">@khachhang.FullName</p>
+                        </li>
+                        <li class="row">
+                            <p class="col-sm-3 col-4 font-weight-semibold text-dark m-b-5">
+                                <i class="m-r-10 text-primary anticon anticon-phone"></i>
+                                <span>Số điện thoại: </span>
+                            </p>
+                            <p class="col font-weight-semibold">@khachhang.Phone</p>
+                        </li>
+                        <li class="row">
+                            <p class="col-sm-3 col-4 font-weight-semibold text-dark m-b-5">
+                                <i class="m-r-10 text-primary far fa-calendar-alt"></i>
+                                <span>Ngày sinh: </span>
+                            </p>
+                            <p style="width:300px" class="col font-weight-semibold">@khachhang.Birthday.ToString("MM/dd/yyyy") (@Utilities.GetMonthOfAge(Utilities.GetMonth(khachhang.Birthday)))</p>
+                        </li>
+                        <li class="row">
+                            <p class="col-sm-3 col-10 font-weight-semibold text-dark m-b-5">
+                                <i class="m-r-10 text-primary anticon anticon-compass"></i>
+                                <span>Địa chỉ: </span>
+                            </p>
+                            <p class="col font-weight-semibold">@khachhang.Address</p>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+</div>
+
+@{string key = ""; }
+
+<div class="col-md-8">
+    @using (Html.BeginForm("TimKiem", "Search", FormMethod.Get))
+    {
+        <div class="input-group" style=" margin-left:200px">
+            <input style="width:50px" type="search" name="sKey" value="@(key != null ? ViewBag.tukhoa : "")" class="form-control bg-light border-0 small" placeholder="Nhập số điện thoại" />
+
+            <select class="custom-select" name="txtCatID" asp-items="ViewBag.LoaiBenh">
+                <option selected>Chọn loại bệnh</option>
+                <option value="0">Chọn tất cả</option>
+            </select>
+            <div class="input-group-append">
+                <input class="btn btn-primary" type="submit" value="Tìm kiếm">
+            </div>
+        </div>
+
+        key = key + ViewBag.tukhoa;
+    }
+</div>
+
+
+<div id="records_table">
+
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tên bệnh</th>
+                <th scope="col">Mũi tiêm</th>
+                <th scope="col">Tên vaccine</th>
+                <th scope="col">Ngày tiêm</th>
+                <th scope="col">Ngày hẹn</th>
+                <th scope="col">Số lô</th>
+                <th scope="col">Liều lượng</th>
+                <th scope="col">Tháng tuổi</th>
+                <th scope="col">#</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.InjectionId</th>
+
+                    <td>@item.DiseaseName</td>
+                    <td>@item.InjectionName</td>
+                    <td>@item.VaccineName</td>
+                    <td>@item.CreateDate</td>
+
+                    <td style="color:peru">@(item.NgayHen != null ? item.NgayHen.Value.ToString("MM/dd/yyyy") : item.NgayHen)</td>
+                    <td>@item.SoLo</td>
+                    <td>@item.LieuLuong</td>
+                    <td>@item.MonthAgeName</td>
+                    <td width="160px">
+                        @*@if (item.CreateDate == null)
+                            {
+                                <a class="btn btn-success btn-tone m-r-5 xemdonhang" href="javascript:void(0)" data-mabenh="@item.DiseaseId" data-mamuitiem="@item.InjectionId">Thêm mũi tiêm</a>
+                            }*@
+                        <!-- Button trigger modal -->
+                        @if (item.CreateDate == null)
+                        {
+                            <a data-target="#modal-header" data-toggle="modal" class="btn btn-secondary btn-tone m-r-5" asp-area="Admin" asp-controller="PhacDo" asp-action="TaoMoi" asp-route-id="@item.InjectionId"><i class="anticon anticon-shopping-cart"></i></a>
+                            <a data-target="#modal-header" data-toggle="modal" class="btn btn-danger btn-tone m-r-5" asp-area="Admin" asp-controller="NgayHen" asp-action="TaoMoi" asp-route-id="@item.InjectionId"><i class="anticon anticon-calendar"></i></a>
+
+                        }
+                    </td>
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+
+</div>
+<div class="pagination-area pt-10">
+    <ul class="pagination">
+        <pager class="paper-container" list="@Model" asp-area="Admin" asp-controller="Search" asp-action="TimKiem" />
+
+    </ul>
+</div>
+<div id="modal-header" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $(".xemdonhang").click(function () {
+                var mabenh = $(this).attr("data-mabenh")
+                var mamuitiem = $(this).attr("data-mamuitiem")
+                $.ajax({
+                    url: '/Admin/PhacDo/TaoMoi',
+                    datatype: "json",
+                    type: "GET",
+                    data: { id: mabenh, idmuitiem: mamuitiem },
+                    async: true,
+                    success: function (results) {
+                        $("#records_table").html("");
+                        $("#records_table").html(results);
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $(".ajax-add-to-cart").click(function () {
+                var IDvaccine = $("#sKey").val();
+                var LieuLuong = $("#lieuluong").val();
+                var SoLo = $("#solo").val();
+                $.ajax({
+                    url: "/Admin/Cart/AddToCart",
+                    data: {
+                        idvaccine: IDvaccine,
+                        lieuluong: LieuLuong,
+                        solo: SoLo,
+                        type: "ajax"
+                    },
+                    success: function (data) {
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Thêm giỏ hàng thành công!',
+                            showConfirmButton: false,
+                            timer: 2500
+                        });
+                        console.log(data.soLuong);
+                        $("#cart_count").html(data.soLuong);
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Thêm giỏ hàng thất bại',
+                            text: 'Vui lòng thử lại',
+                            showConfirmButton: false,
+                            timer: 2500
+                        });
+                    }
+                });
+            });
+        });
+
+        $('#modal-header').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var url = button.attr("href");
+            var modal = $(this);
+            // note that this will replace the content of modal-content ever time the modal is opened
+            modal.find('.modal-content').load(url);
+        });
+    </script>
+}

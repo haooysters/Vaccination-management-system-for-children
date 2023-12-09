@@ -1,0 +1,104 @@
+﻿
+@model IEnumerable<HeThongQuanLyTiemChung.Models.Disease>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var DanhSachBenh = ViewBag.Benh;
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <span class="breadcrumb-item active">Danh sách loại bệnh</span>
+        </nav>
+    </div>
+</div>
+
+<div class="row m-b-30">
+    <div class="col-lg-8">
+        <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminDiseases" asp-action="Create"><i class="anticon anticon-plus-circle m-r-5"></i><span>Thêm mới</span></a>
+    </div>
+    <div class="col-lg-4 ">
+
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tên bệnh</th>
+               
+                <th scope="col">#</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.DiseaseId</th>
+                    
+                    <td>@item.DiseaseName</td>
+                   
+                    <td>
+                        <a class="btn btn-primary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminDiseases" asp-action="Details" asp-route-id="@item.DiseaseId">Chi tiết</a>
+                        <a class="btn btn-secondary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminDiseases" asp-action="Edit" asp-route-id="@item.DiseaseId">Sửa</a>
+                        <a class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="AdminDiseases" asp-action="Delete" asp-route-id="@item.DiseaseId">Xóa</a>
+                       @* <a class="btn btn-success btn-tone m-r-5 xemdonhang" href="javascript:void(0)" data-madonhang="@item.DiseaseId"><i class="anticon anticon-plus"></i></a>*@
+                        <a data-target="#modal-header" data-toggle="modal" class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="AdminInjections" asp-action="TaoMoi" asp-route-id="@item.DiseaseId"><i class="anticon anticon-plus"></i></a>
+
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+    <hr />
+    <div id="records_table">
+
+    </div>
+</div>
+
+
+<div id="modal-header" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $(".xemdonhang").click(function () {
+                var madonhang = $(this).attr("data-madonhang")
+                $.ajax({
+                    url: '/Admin/AdminInjections/TaoMoi',
+                    datatype: "json",
+                    type: "GET",
+                    data: { id: madonhang },
+                    async: true,
+                    success: function (results) {
+                        $("#records_table").html("");
+                        $("#records_table").html(results);
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+            });
+        });
+
+
+        $('#modal-header').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var url = button.attr("href");
+            var modal = $(this);
+            // note that this will replace the content of modal-content ever time the modal is opened
+            modal.find('.modal-content').load(url);
+        });
+    </script>
+}

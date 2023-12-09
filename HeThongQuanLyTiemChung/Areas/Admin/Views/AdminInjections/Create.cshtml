@@ -1,0 +1,49 @@
+﻿@model HeThongQuanLyTiemChung.Models.Injection
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminInjections" asp-action="Index" class="breadcrumb-item">Danh sách mũi tiêm</a>
+            <span class="breadcrumb-item active">Tạo mới mũi tiêm</span>
+        </nav>
+    </div>
+</div>
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <div class="form-group col-md-6">
+            <label class="col-sm-6 col-form-label">Tên mũi tiêm</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="InjectionName" placeholder="Tên mũi tiêm">
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="DiseaseId" class="col-sm-6 col-form-label">Loại bệnh</label>
+            <div class="col-sm-10">
+                <select asp-for="DiseaseId" class="form-control" asp-items="ViewBag.LoaiBenh">
+                    <option value="" selected>Chọn loại bệnh</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-sm-6 col-form-label">Tháng tuổi</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="MonthAgeName" placeholder="Tên tháng tuổi">
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <div class="col-sm-6" style="text-align:center">
+                <button type="submit" class="btn btn-primary">Tạo mới</button>
+            </div>
+        </div>
+    </div>
+</form>
+

@@ -1,0 +1,80 @@
+﻿@model HeThongQuanLyTiemChung.Models.Page
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles{
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminPages" asp-action="Index" class="breadcrumb-item">Danh sách tin tức</a>
+            <span class="breadcrumb-item active">Tạo mới tin tức</span>
+        </nav>
+    </div>
+</div>
+
+<form asp-action="Create" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <div class="form-group col-md-6">
+            <label class="col-sm-6 col-form-label">Tên tin tức</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="Title" placeholder="Tên mũi tiêm">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-sm-6 col-form-label">Tên tác giả</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="AuthorName" placeholder="Tên tác giả">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Thumb" class="col-sm-6 col-form-label">Ảnh đại diện</label>
+            <div class="col-sm-8">
+                <div>
+                    <input asp-for="Thumb" name="fThumb" type="file" class="form-control-file" />
+                </div>
+                <span asp-validation-for="Thumb" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            <label class="col-sm-12 col-form-label">Nội dung</label>
+            <div id="editor">
+                <div class="col-sm-12">
+                    <textarea class="summernote" asp-for="Contents"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <div class="col-sm-6" style="text-align:center">
+                <button type="submit" class="btn btn-primary">Tạo mới</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+
+        jQuery(document).ready(function () {
+            $('.summernote').summernote({
+                fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+                height: 200,
+                minHeight: null,
+                maxHeight: null,
+                focus: true
+            });
+        });
+    </script>
+}

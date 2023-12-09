@@ -1,0 +1,48 @@
+﻿@model HeThongQuanLyTiemChung.Models.Disease
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    List<Injection> muitiem = ViewBag.IDMuiTiem;
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminDiseases" asp-action="Index" class="breadcrumb-item">Danh sách mũi tiêm theo bệnh</a>
+            <span class="breadcrumb-item active">Thông tin mũi tiêm theo bệnh</span>
+        </nav>
+    </div>
+</div>
+
+<div class="card-body">
+    <h4 class="card-title">Thông tin mũi tiêm theo bệnh</h4>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Tên bệnh</th>
+                    <th scope="col">Mũi tiêm</th>
+                    <th scope="col">Tháng tuổi</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in muitiem)
+                {
+                    <tr>
+                        <th scope="row">@item.InjectionId</th>
+                        <td>@item.Disease.DiseaseName</td>
+                        <td>@item.InjectionName</td>
+                        <td>@item.MonthAgeName</td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

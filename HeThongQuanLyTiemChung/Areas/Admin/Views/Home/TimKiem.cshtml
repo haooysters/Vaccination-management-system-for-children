@@ -1,0 +1,75 @@
+﻿@model IEnumerable<HeThongQuanLyTiemChung.Models.Vaccine>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*@{string key = ""; }
+
+<div class="col-md-8">
+    @using (Html.BeginForm("TimKiem", "Home", FormMethod.Get))
+    {
+        <div class="input-group">
+            <input type="search" name="sKey" value="@(key != null ? ViewBag.tukhoa : "")" class="form-control bg-light border-0 small" placeholder="Tìm kiếm khóa học" />
+
+            <select class="custom-select" name="txtCatID" asp-items="ViewBag.DanhMuc">
+                <option selected>Chọn danh mục</option>
+                <option value="0">Chọn tất cả</option>
+            </select>
+            <div class="input-group-append">
+                <input class="btn btn-secondary" type="submit" value="Go">
+            </div>
+        </div>
+
+        key = key + ViewBag.tukhoa;
+    }
+</div>*@
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <span class="breadcrumb-item active">Danh sách vaccine</span>
+        </nav>
+    </div>
+</div>
+
+
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Tên bệnh</th>
+                <th scope="col">Nhóm tuổi</th>
+                <th scope="col">#</th>
+            </tr>
+        </thead>
+        <tbody id="records_table">
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.VaccineId</th>
+
+                        <td>@item.VaccineName</td>
+                        @*<td>@item.Cat.CatName</td>*@
+                        <td>@item.Age.AgeName</td>
+                        <td width="300px">
+                            <a class="btn btn-primary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminVaccines" asp-action="Details" asp-route-id="@item.VaccineId">Chi tiết</a>
+                            <a class="btn btn-secondary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminVaccines" asp-action="Edit" asp-route-id="@item.VaccineId">Sửa</a>
+                            <a class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="AdminVaccines" asp-action="Delete" asp-route-id="@item.VaccineId">Xóa</a>
+
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+
+

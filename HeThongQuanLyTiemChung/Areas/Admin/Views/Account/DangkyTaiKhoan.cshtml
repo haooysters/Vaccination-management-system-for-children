@@ -1,0 +1,84 @@
+﻿@model HeThongQuanLyTiemChung.ModelViews.RegisterViewModel
+
+@{
+    ViewData["Title"] = "DangkyTaiKhoan";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminAccounts" asp-action="Index" class="breadcrumb-item">Danh sách tài khoản</a>
+            <span class="breadcrumb-item active">Thêm mới tài khoản</span>
+        </nav>
+    </div>
+</div>
+
+
+<div class="app">
+    <div class="container-fluid p-h-0 p-v-20 bg full-height d-flex" style="background-image: url('/Adminassets/images/others/login-3.png') ">
+        <div class="d-flex flex-column justify-content-between w-100">
+            <div class="container d-flex h-100">
+                <div class="row align-items-center w-100">
+                    <div class="col-md-3 col-lg-6 m-h-auto">
+                        <div class="card shadow-lg">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between m-b-30">
+                                    <img class="img-fluid" alt="" src="~/Adminassets/images/logo/logo.png">
+                                    <h2 class="m-b-0">Đăng ký</h2>
+                                </div>
+                                <form asp-action="DangkyTaiKhoan">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="FullName" class="control-label"></label>
+                                        <input asp-for="FullName" class="form-control" />
+                                        <span asp-validation-for="FullName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Email" class="control-label"></label>
+                                        <input asp-for="Email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                        @if (ViewBag.error != null)
+                                        {
+                                            <span class="badge badge-danger" style="color:red">@ViewBag.error</span>
+                                        }
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Phone" class="control-label"></label>
+                                        <input asp-for="Phone" class="form-control" />
+                                        <span asp-validation-for="Phone" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Password" class="control-label"></label>
+                                        <input asp-for="Password" type="password" class="form-control" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="ConfirmPassword" class="control-label"></label>
+                                        <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="d-flex align-items-center justify-content-between p-t-15">
+                                            <div class="checkbox">
+                                                <input id="checkbox" type="checkbox">
+                                                <label for="checkbox"><span>I have read the <a href="">agreement</a></span></label>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Đăng ký</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Adminassets/js/vendors.min.js"></script>
+<script src="~/Adminassets/js/app.min.js"></script>
